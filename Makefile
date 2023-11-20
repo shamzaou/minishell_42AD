@@ -3,7 +3,7 @@ SRC =	\
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc -g3 
+CC = cc -g3 
 # -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
