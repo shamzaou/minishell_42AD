@@ -14,4 +14,6 @@
 #include <term.h>
 #include <readline/readline.h>
 
+# define PROMPT "minishell >"
+
 #endif

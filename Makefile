@@ -1,5 +1,6 @@
+NAME = minishell
 
-SRC =	\
+SRC = main.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -7,8 +8,6 @@ CC = cc -g3
 # -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
-
-NAME = minishell
 
 LIB = Libft/libft.a
 
