@@ -13,8 +13,9 @@
 #include <curses.h>
 #include <term.h>
 #include <readline/readline.h>
+#include <readline/history.h>
 
-# define PROMPT "minishell >"
+# define PROMPT "minishell-$>"
 
 typedef enum e_token_type
 {
@@ -39,8 +40,10 @@ typedef struct s_tokens
     struct s_tokens     *prev;
 }       t_tokens;
 
+typedef struct s_data
+{
 
-char	**ft_splitter(char const *s, char c);
+}       t_data;
 
 
 /* >>> tokeniser.c <<< */
@@ -50,5 +53,10 @@ t_tokens            *classify(char **strtokens);
 void                free_strtokens(char **strtokens);
 t_token_type        get_type(char *value);
 void                clear_tokens(t_tokens *head);
+
+/* >>> utils.c <<< */
+int     ft_strcmp(char *s1, char *s2);
+char	**ft_splitter(char const *s, char c);
+char    *ft_strtolower(char *str);
 
 #endif

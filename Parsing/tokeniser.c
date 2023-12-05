@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 08:12:54 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/12/05 10:57:55 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:07:31 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ t_token_type get_type(char *value)
 {
     if (value == NULL)
         return INVALID;
-    if (strcmp(value, "|") == 0)
+    if (ft_strcmp(value, "|") == 0)
         return PIPE;
-    else if (strcmp(value, "<") == 0)
+    else if (ft_strcmp(value, "<") == 0)
         return REDIRECT_IN;
-    else if (strcmp(value, ">") == 0)
+    else if (ft_strcmp(value, ">") == 0)
         return REDIRECT_OUT;
-    else if (strcmp(value, ">>") == 0)
+    else if (ft_strcmp(value, ">>") == 0)
         return APPEND;
-    else if (strcmp(value, "<<") == 0)
+    else if (ft_strcmp(value, "<<") == 0)
         return HEREDOC;
     else if (value[0] == '$')
         return ENV_VAR;
