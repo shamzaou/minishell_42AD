@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = main.c
+SRC = main.c Parsing/tokeniser.c Parsing/ft_splitter.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -19,7 +19,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -sC ./Libft
-	@$(CC) $(CFLAGS) $(OBJ) $(LIB) $(PRINTF) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) $(PRINTF) -lreadline -o $(NAME)
 
 clean:
 	@rm -f $(OBJ)
