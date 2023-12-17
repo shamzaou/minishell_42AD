@@ -37,13 +37,12 @@ typedef struct s_tokens
     t_token_type        type;
     char                *value;
     struct s_tokens     *next;
-    struct s_tokens     *prev;
 }       t_tokens;
 
-typedef struct s_data
-{
-
-}       t_data;
+typedef struct s_command {
+    char *name;
+    char **args;
+}       t_command;
 
 
 /* >>> tokeniser.c <<< */
@@ -58,5 +57,11 @@ void                clear_tokens(t_tokens *head);
 int     ft_strcmp(char *s1, char *s2);
 char	**ft_splitter(char const *s, char c);
 char    *ft_strtolower(char *str);
+
+
+t_command *parse_command(t_tokens **current_token);
+char *parse_command_name(t_tokens **current_token);
+char **parse_arguments(t_tokens **current_token);
+
 
 #endif
