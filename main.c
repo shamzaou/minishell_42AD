@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 05:34:40 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/12/05 11:22:06 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/12/18 03:26:07 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ int main(int argc, char **argv, char **env)
     //init_shell(env);
     while (1)
     {
-        line = readline(PROMPT);
-        if (line != NULL)
-        {
-            if (line && *line)
+        line = readline(PROMPT);?
+\        if (line && *line)
                 add_history(line);
             tokens = tokenise(line);
             //print_token_list(tokens);
