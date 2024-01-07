@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quotes.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/08 02:04:52 by shamzaou@student  #+#    #+#             */
+/*   Updated: 2024/01/08 02:04:57 by shamzaou@student ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	process_single_quote(char *arg, int *i, t_queue_char *q)

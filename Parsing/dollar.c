@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dollar.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/08 02:03:58 by shamzaou@student  #+#    #+#             */
+/*   Updated: 2024/01/08 02:04:04 by shamzaou@student ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	process_dollar_sign_2(int *values[2], t_queue_char *q, char *arg,

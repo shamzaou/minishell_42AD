@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_analyzer_helpers.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/08 02:05:01 by shamzaou@student  #+#    #+#             */
+/*   Updated: 2024/01/08 02:05:04 by shamzaou@student ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	check_invalid_pipe_syntax(char **ps, char *es, int *exit_status)

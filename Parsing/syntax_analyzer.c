@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analyzer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:33:35 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/12/05 11:33:53 by shamzaou         ###   ########.fr       */
+/*   Updated: 2024/01/08 02:05:09 by shamzaou@student ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

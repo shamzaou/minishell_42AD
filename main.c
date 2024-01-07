@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 05:34:40 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/12/18 03:26:07 by shamzaou         ###   ########.fr       */
+/*   Updated: 2024/01/08 02:05:23 by shamzaou@student ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
