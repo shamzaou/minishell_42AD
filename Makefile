@@ -8,7 +8,42 @@ else
     INCLUDES    =   -I./include -I./lib/libft
 endif
 
-SRC = main.c Parsing/tokeniser.c Parsing/ft_splitter.c Parsing/syntax_analyzer.c Parsing/utils.c Execution/Builtins/builtins.c
+SRC =	./Parsing/syntax_analyzer.c \
+		./Parsing/utils.c \
+		./Execution/Builtins/builtins.c \
+		./Env/env.c \
+		./Env/env_utils.c \
+		./main.c \
+		./Execution/exec_redir.c \
+		./Execution/exec.c \
+		./Execution/toolbox0.c \
+		./Execution/exec_cmd.c \
+		./Execution/queue.c \
+		./Execution/ft_free.c \
+		./Execution/Builtins/exit.c \
+		./Execution/Builtins/unset.c \
+		./Execution/Builtins/export_utils.c \
+		./Execution/Builtins/env.c \
+		./Execution/Builtins/pwd.c \
+		./Execution/Builtins/export.c \
+		./Execution/Builtins/cd.c \
+		./Execution/Builtins/echo.c \
+		./Execution/operators.c \
+		./Execution/exec_pipe.c \
+		./Execution/exec_utils.c \
+		./Execution/exec_builtin.c \
+		./Execution/toolbox1.c \
+		./Parsing/parsing.c \
+		./Parsing/syntax_analyzer.c \
+		./Parsing/parse_exec.c \
+		./Parsing/get_arguments.c \
+		./Parsing/broomstick.c \
+		./Parsing/null_terminate.c \
+		./Parsing/tokenise.c \
+		./Parsing/get_arguments_helpers.c \
+		./Parsing/syntax_analyzer_helpers.c \
+		./Parsing/dollar.c \
+		./Parsing/quotes.c \
 
 OBJ = $(SRC:.c=.o)
 
