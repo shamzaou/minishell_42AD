@@ -6,7 +6,7 @@
 /*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 05:34:40 by shamzaou          #+#    #+#             */
-/*   Updated: 2024/01/08 02:12:11 by alabdull         ###   ########.fr       */
+/*   Updated: 2024/01/08 03:19:37 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int	main(int argc, char **argv, char **envp)
 		execute_shell_command(&params, &exit_status);
 	}
 	free_env_var_list(params.env_var_list);
-	rl_clear_history();
+	clear_history();
 	return (exit_status);
 }
