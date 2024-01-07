@@ -71,7 +71,6 @@ static void	cd_path_check(char **argv, int *exit_status,
 	path = ft_strjoin(getenv_value("HOME", env_var_list), argv[1] + 1);
 	if (chdir(path) != 0)
 	{
-		ft_printf_fd(2, "minishell: cd: %s: No such file or directory\n", path);
 		ft_putstr_fd1("minishell: cd: ", path,
 			": No such file or directory\n", 2);
 		*exit_status = 1;
@@ -95,8 +94,6 @@ void	cd(char **argv, int *exit_status, t_env_var *env_var_list)
 		cd_path_check(argv, exit_status, env_var_list);
 	else if (chdir(argv[1]) != 0)
 	{
-		ft_printf_fd(2, "minishell: cd: %s: No such file or directory\n",
-			argv[1]);
 		ft_putstr_fd1("minishell: cd: ", argv[1],
 			": No such file or directory\n", 2);
 		*exit_status = 1;

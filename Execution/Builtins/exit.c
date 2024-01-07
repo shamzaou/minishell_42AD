@@ -11,7 +11,6 @@ static void	handle_non_numeric_arg(char *arg, t_params *params)
 static void	handle_too_many_args(t_params *params)
 {
 	printf("exit\n");
-	ft_printf_fd(STDERR_FILENO, "minishell: exit: too many arguments\n");
 	ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
 	free_exit(params, 1);
 }
