@@ -1,4 +1,3 @@
-
 NAME = minishell
 
 SRC = main.c Parsing/tokeniser.c Parsing/ft_splitter.c Parsing/syntax_analyzer.c Parsing/utils.c Execution/Builtins/builtins.c

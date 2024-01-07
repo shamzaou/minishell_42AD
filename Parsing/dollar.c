@@ -1,0 +1,43 @@
+#include "../minishell.h"
+
+void	process_dollar_sign_2(int *values[2], t_queue_char *q, char *arg,
+		t_params *params)
+{
+	char	*var_name;
+	char	*var_value;
+	int		*i;
+
+	i = values[0];
+	var_name = getvar_name(arg + *i);
+	var_value = getenv_value(var_name, params->env_var_list);
+	if (var_value)
+		enqueue_str(q, var_value);
+	(*i) += ft_strlen(var_name);
+	ft_free(var_name);
+}
+
+void	process_dollar_sign(int *values[2], t_queue_char *q, char *arg,
+		t_params *params)
+{
+	char	*exit_status_str;
+	int		*i;
+	int		*exit_status;
+
+	i = values[0];
+	exit_status = values[1];
+	(*i)++;
+	if (!arg[*i] || is_whitespace(arg[*i]))
+	{
+		enqueue_char(q, '$');
+		return ;
+	}
+	else if (arg[*i] == '?')
+	{
+		exit_status_str = ft_itoa(*exit_status);
+		enqueue_str(q, exit_status_str);
+		free(exit_status_str);
+		(*i)++;
+	}
+	else
+		process_dollar_sign_2(values, q, arg, params);
+}

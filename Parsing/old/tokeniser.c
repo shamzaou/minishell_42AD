@@ -24,6 +24,7 @@ t_tokens    *tokenise(char const *line)
         return (NULL);
     head = classify(strtokens);
     free_strtokens(strtokens);
+
     return (head);
 }
 
@@ -47,10 +48,10 @@ t_tokens *create_new_token(char *value)
     return new_token;
 }
 
-t_tokens *classify(char **strtokens)
+t_token_node *classify(char **strtokens)
 {
-    t_tokens    *head;
-    t_tokens    *current;
+    t_token_node    *head;
+    t_token_node    *current;
     int         i;
     
     head = NULL;
@@ -58,7 +59,7 @@ t_tokens *classify(char **strtokens)
     i = -1;
     while (strtokens[++i])
     {
-        t_tokens *new_token = create_new_token(strtokens[i]);
+        t_token_node *new_token = create_new_token(strtokens[i]);
         if (!new_token)
         {
             clear_tokens(head);
@@ -108,7 +109,7 @@ t_token_type get_type(char *value)
     else if (value[0] == '\"' && value[strlen(value) - 1] == '\"')
         return DQUOTE;
     else
-        return WORD;
+        return COMMAND;
 }
 
 void clear_tokens(t_tokens *head)

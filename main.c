@@ -11,59 +11,99 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-        TESTING TOKENISATION
-        
-const char *token_type_to_string(t_token_type type) {
-    switch (type) {
-        case WORD: return "WORD";
-        case PIPE: return "PIPE";
-        case REDIRECT_IN: return "REDIRECT_IN";
-        case REDIRECT_OUT: return "REDIRECT_OUT";
-        case APPEND: return "APPEND";
-        case HEREDOC: return "HEREDOC";
-        case ENV_VAR: return "ENV_VAR";
-        case QUOTE: return "QUOTE";
-        case DQUOTE: return "DQUOTE";
-        default: return "UNKNOWN";
-    }
-}
 
-// Function to print the contents of the token list
-void print_token_list(t_tokens *tokens) {
-    t_tokens *current = tokens;
-    while (current != NULL) {
-        printf("Token: %-15s Type: %s\n", current->value, token_type_to_string(current->type));
-        current = current->next;
-    }
-}
-*/
-
-int main(int argc, char **argv, char **env)
+static void	execute_command(t_params *params, int *exit_status)
 {
-    char        *line;
-    t_tokens    *tokens;
-    
-    (void)argv;
-    (void)env;
-    if (argc != 1)
-        return (1);
-    //init_shell(env);
-    while (1)
-    {
-        line = readline(PROMPT);?
-\        if (line && *line)
-                add_history(line);
-            tokens = tokenise(line);
-            //print_token_list(tokens);
-            free(line);
-            //if (!syntax_error(tokens))
-            //    execution(&tokens);
-            //else
-                clear_tokens(tokens);
-        }
-        else
-            continue;
-    }
-    return (0);
+	int			status;
+	t_execcmd	*ecmd;
+
+	set_signal_handler(params->tree);
+	if (forking(params) == 0)
+	{
+		save_child_pid(getpid(), params);
+		run_cmd(params->tree, params, exit_status);
+	}
+	waitpid(-1, &status, 0);
+	get_exit_status(params->tree, params, exit_status, status);
+	ecmd = (t_execcmd *)params->tree;
+	if (ecmd->type == EXEC && ft_strcmp(ecmd->argv[0], "exit") == 0)
+	{
+		if (!ecmd->argv[1] || (ecmd->argv[1]
+				&& (!is_numeric(ecmd->argv[1]) || !ecmd->argv[2])))
+		{
+			unlink("/tmp/exit_status.tmp");
+			unlink("/tmp/child_pid.tmp");
+			free_exit(params, *exit_status);
+		}
+	}
+	cleanup(params);
+}
+
+static void	initialize_shell_environment(t_params *params, int *exit_status,
+		char **envp)
+{
+	*exit_status = 0;
+	params->envp = envp;
+	params->env_var_list = NULL;
+	init_queue(&params->args_queue);
+	init_env_var_list(envp, &params->env_var_list);
+}
+
+int	is_valid_shell_input(char *buf, int *exit_status)
+{
+	if (ft_strlen(buf) == 0 || is_whitespace_string(buf)
+		|| !validate_command(buf, exit_status))
+		return (0);
+	return (1);
+}
+
+static void	execute_shell_command(t_params *params, int *exit_status)
+{
+	add_history(params->buf);
+	params->tree = parse_cmd(params->buf, exit_status);
+	if (!params->tree)
+	{
+		ft_free(params->buf);
+		return ;
+	}
+	process_args(params->tree, params, exit_status);
+	if (is_built_in_command(params->tree))
+	{
+		execute_built_in_command((t_execcmd *)params->tree,
+			&params->env_var_list, exit_status);
+		ft_free(params->buf);
+		free_tree(params->tree);
+		free_queue(&params->args_queue);
+	}
+	else
+		execute_command(params, exit_status);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_params	params;
+	int			exit_status;
+
+	(void)argc;
+	(void)argv;
+	initialize_shell_environment(&params, &exit_status, envp);
+	while (1)
+	{
+		setup_signals();
+		params.buf = readline("minishell$ ");
+		if (!params.buf)
+		{
+			ft_printf_fd(STDOUT_FILENO, "exit\n");
+			break ;
+		}
+		if (!is_valid_shell_input(params.buf, &exit_status))
+		{
+			ft_free(params.buf);
+			continue ;
+		}
+		execute_shell_command(&params, &exit_status);
+	}
+	free_env_var_list(params.env_var_list);
+	rl_clear_history();
+	return (exit_status);
 }
