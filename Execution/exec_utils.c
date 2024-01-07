@@ -21,14 +21,14 @@ void	handle_invalid_executable(t_execcmd *ecmd, t_params *params,
 {
 	if (S_ISDIR(path_stat.st_mode))
 	{
-		ft_printf_fd(STDERR_FILENO, "minishell: %s: is a directory\n",
-			ecmd->argv[0]);
+		ft_putstr_fd1("minishell: ", ecmd->argv[0], ": is a directory\n",
+			STDERR_FILENO);
 		free_exit(params, 126);
 	}
 	else if (access(ecmd->argv[0], X_OK) != 0)
 	{
-		ft_printf_fd(STDERR_FILENO, "minishell: %s: Permission denied\n",
-			ecmd->argv[0]);
+		ft_putstr_fd1("minishell: ", ecmd->argv[0], ": Permission denied\n",
+			STDERR_FILENO);
 		free_exit(params, 126);
 	}
 }
@@ -45,9 +45,8 @@ void	handle_executable_path(t_execcmd *ecmd, t_params *params)
 			handle_invalid_executable(ecmd, params, path_stat);
 		else
 		{
-			ft_printf_fd(STDERR_FILENO,
-				"minishell: %s: No such file or directory\n",
-				ecmd->argv[0]);
+			ft_putstr_fd1("minishell: ", ecmd->argv[0],
+				": No such file or directory\n", STDERR_FILENO);
 			free_exit(params, 127);
 		}
 	}

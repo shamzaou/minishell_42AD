@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 02:05:31 by shamzaou@student  #+#    #+#             */
-/*   Updated: 2024/01/08 02:05:32 by shamzaou@student ###   ########.fr       */
+/*   Created: 2024/01/08 02:05:31 by shamzaou@st       #+#    #+#             */
+/*   Updated: 2024/01/08 03:07:07 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	signal_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		ft_printf_fd(STDERR_FILENO, "\n");
+		ft_putstr_fd("\n", STDERR_FILENO);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
@@ -33,7 +33,7 @@ void	signal_handler_herdoc(int signum)
 
 	if (signum == SIGINT)
 	{
-		ft_printf("\n");
+		printf("\n");
 		fd = open("/tmp/child_pid.tmp", O_RDONLY);
 		if (fd < 0)
 		{
@@ -49,15 +49,15 @@ void	signal_handler_herdoc(int signum)
 		kill(child_pid, SIGKILL);
 	}
 	else if (signum == SIGQUIT)
-		ft_printf("\b\b  \b\b");
+		printf("\b\b  \b\b");
 }
 
 void	signal_handler_input(int signum)
 {
 	if (signum == SIGQUIT)
-		ft_printf_fd(STDERR_FILENO, "Quit: %d\n", SIGQUIT);
+		ft_putnbr_fd1("Quit: ", signum, "\n", STDERR_FILENO);
 	else if (signum == SIGINT)
-		ft_printf_fd(STDERR_FILENO, "\n");
+		ft_putstr_fd("\n", STDERR_FILENO);
 }
 
 void	setup_signals(void)

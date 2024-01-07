@@ -9,8 +9,8 @@ static void	update_pwd(t_env_var *env_var_list)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		ft_printf_fd(2, "minishell: cd: error retrieving current directory: \
-getcwd: cannot access parent directories: No such file or directory\n");
+		ft_putendl_fd("minishell: cd: error retrieving current directory: \
+getcwd: cannot access parent directories: No such file or directory", 2);
 		return ;
 	}
 	tmp = env_var_list;
@@ -53,12 +53,12 @@ static void	cd_oldpwd_check(t_env_var *env_var_list, int *exit_status)
 {
 	if (chdir(getenv_value("OLDPWD", env_var_list)) != 0)
 	{
-		ft_printf_fd(2, "minishell: cd: OLDPWD not set\n");
+		ft_putstr_fd("minishell: cd: OLDPWD not set\n", 2);
 		*exit_status = 1;
 	}
 	else
 	{
-		ft_printf("%s\n", getenv_value("OLDPWD", env_var_list));
+		printf("%s\n", getenv_value("OLDPWD", env_var_list));
 		update_pwd(env_var_list);
 	}
 }
@@ -72,6 +72,8 @@ static void	cd_path_check(char **argv, int *exit_status,
 	if (chdir(path) != 0)
 	{
 		ft_printf_fd(2, "minishell: cd: %s: No such file or directory\n", path);
+		ft_putstr_fd1("minishell: cd: ", path,
+			": No such file or directory\n", 2);
 		*exit_status = 1;
 	}
 	else
@@ -95,6 +97,8 @@ void	cd(char **argv, int *exit_status, t_env_var *env_var_list)
 	{
 		ft_printf_fd(2, "minishell: cd: %s: No such file or directory\n",
 			argv[1]);
+		ft_putstr_fd1("minishell: cd: ", argv[1],
+			": No such file or directory\n", 2);
 		*exit_status = 1;
 	}
 	else

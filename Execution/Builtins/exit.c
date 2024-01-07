@@ -2,16 +2,17 @@
 
 static void	handle_non_numeric_arg(char *arg, t_params *params)
 {
-	ft_printf("exit\n");
-	ft_printf_fd(STDERR_FILENO,
-		"minishell: exit: %s: numeric argument required\n", arg);
+	printf("exit\n");
+	ft_putstr_fd1("minishell: exit: ", arg, ": numeric argument required\n",
+		STDERR_FILENO);
 	free_exit(params, 255);
 }
 
 static void	handle_too_many_args(t_params *params)
 {
-	ft_printf("exit\n");
+	printf("exit\n");
 	ft_printf_fd(STDERR_FILENO, "minishell: exit: too many arguments\n");
+	ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
 	free_exit(params, 1);
 }
 
@@ -28,12 +29,12 @@ void	exit_command(char **argv, t_params *params)
 			handle_too_many_args(params);
 		else
 		{
-			ft_printf("exit\n");
+			printf("exit\n");
 			exit_code = ft_atoll(argv[1], &over_under_flow);
 			if (over_under_flow)
 			{
-				ft_printf_fd(STDERR_FILENO,
-					"minishell: exit: %s: numeric argument required\n", argv[1]);
+				ft_putstr_fd1("minishell: exit: ", argv[1],
+					": numeric argument required\n", STDERR_FILENO);
 				free_exit(params, 255);
 			}
 			free_exit(params, exit_code);

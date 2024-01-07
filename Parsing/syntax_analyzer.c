@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analyzer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:33:35 by shamzaou          #+#    #+#             */
-/*   Updated: 2024/01/08 02:05:09 by shamzaou@student ###   ########.fr       */
+/*   Updated: 2024/01/08 02:58:50 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static int	contains_unbalanced_quotes(char *buf, int *exit_status)
 				i++;
 			if (!buf[i])
 			{
-				ft_printf_fd(STDERR_FILENO, "minishell: unexpected EOF while looking \
-for matching `%c'\n", tok);
+				ft_putstr_fd2("minishell: unexpected EOF while looking \
+for matching `", tok, "'\n", STDERR_FILENO);
 				*exit_status = 258;
 				return (1);
 			}

@@ -8,9 +8,9 @@ static void	print_environment_variables(t_env_var *env_var_list)
 	while (current)
 	{
 		if (current->value)
-			ft_printf("declare -x %s=\"%s\"\n", current->key, current->value);
+			printf("declare -x %s=\"%s\"\n", current->key, current->value);
 		else
-			ft_printf("declare -x %s\n", current->key);
+			printf("declare -x %s\n", current->key);
 		current = current->next;
 	}
 }
@@ -51,8 +51,8 @@ void	export_command(char **args,
 		key = extract_variable_name(args[i], equal_sign);
 		if (!is_valid_variable_name(key))
 		{
-			ft_printf_fd(STDERR_FILENO,
-				"minishell: export: `%s': not a valid identifier\n", args[i]);
+			ft_putstr_fd1("minishell: export: `", args[i],
+				"': not a valid identifier\n", STDERR_FILENO);
 			*exit_status = 1;
 			i++;
 			free(key);

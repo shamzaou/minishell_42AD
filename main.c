@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 05:34:40 by shamzaou          #+#    #+#             */
-/*   Updated: 2024/01/08 02:05:23 by shamzaou@student ###   ########.fr       */
+/*   Updated: 2024/01/08 02:12:11 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv, char **envp)
 		params.buf = readline("minishell$ ");
 		if (!params.buf)
 		{
-			ft_printf_fd(STDOUT_FILENO, "exit\n");
+			ft_putendl_fd("exit", STDOUT_FILENO);
 			break ;
 		}
 		if (!is_valid_shell_input(params.buf, &exit_status))

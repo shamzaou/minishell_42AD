@@ -28,8 +28,8 @@ void	unset_env_var(char **args, t_env_var **env_var_list, int *exit_status)
 	{
 		if (!is_valid_variable_name(args[i]))
 		{
-			ft_printf_fd(2, "minishell: unset: `%s': not a valid identifier\n",
-				args[i]);
+			ft_putstr_fd1("minishell: unset: `", args[i],
+				"': not a valid identifier\n", 2);
 			*exit_status = 1;
 			i++;
 			continue ;

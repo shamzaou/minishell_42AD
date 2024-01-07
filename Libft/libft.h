@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alabdull <alabdull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:42:55 by alabdull          #+#    #+#             */
-/*   Updated: 2023/02/08 21:55:26 by alabdull         ###   ########.fr       */
+/*   Updated: 2024/01/08 03:06:34 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,13 @@ void	*ft_memset(void *b, int c, size_t len);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_putnbr_fd1(char *s1, int n, char *s3, int fd);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr_fd1(char *s1, char *s2, char *s3, int fd);
+void	ft_putstr_fd2(char *s1, char s2, char *s3, int fd);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
+int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s1);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strjoin(char const *s1, char const *s2);

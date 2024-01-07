@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 02:04:44 by shamzaou@student  #+#    #+#             */
-/*   Updated: 2024/01/08 02:04:49 by shamzaou@student ###   ########.fr       */
+/*   Created: 2024/01/08 02:04:44 by shamzaou@st       #+#    #+#             */
+/*   Updated: 2024/01/08 02:45:23 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_cmd	*parse_cmd(char *buf, int *exit_status)
 	if (ps != es || error == 1)
 	{
 		if (error == 1)
-			ft_printf_fd(STDERR_FILENO, "minishell: too many arguments\n");
+			ft_putstr_fd("minishell: too many arguments\n", STDERR_FILENO);
 		else
-			ft_printf_fd(STDERR_FILENO, "minishell: syntax error\n");
+			ft_putstr_fd("minishell: syntax error\n", STDERR_FILENO);
 		*exit_status = 258;
 		free_tree(cmd);
 		return (NULL);

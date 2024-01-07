@@ -59,7 +59,7 @@ static char	*get_herdoc_input(char *delimiter, t_params *params,
 	init_queue(&q);
 	while (1)
 	{
-		ft_printf_fd(STDERR_FILENO, "> ");
+		ft_putstr_fd("> ", STDERR_FILENO);
 		line = get_next_line(0);
 		if (line == NULL)
 			break ;
