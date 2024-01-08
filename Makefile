@@ -4,9 +4,11 @@ CC = cc
 
 CFLAGS = -g3 -Wall -Werror -Wextra
 
-ifeq ($(shell uname -p), i386)
-    LIB_FLAGS   =   -L./lib/libft -lft -L/usr/local/Cellar/readline/8.1/lib -lreadline
-    INCLUDES    =   -I./include -I./lib/libft -I/usr/local/Cellar/readline/8.1/include
+READLINE_PATH = $(shell brew --prefix readline)
+
+ifeq ($(shell uname -m), arm64)
+    LIB_FLAGS   =   -L./lib/libft -lft -L$(READLINE_PATH)/lib -lreadline
+    INCLUDES    =   -I./include -I./lib/libft -I$(READLINE_PATH)/include
 else
     LIB_FLAGS   =   -L./lib/libft -lft -lreadline
     INCLUDES    =   -I./include -I./lib/libft
@@ -49,6 +51,9 @@ SRC =	./main.c \
 		./Signals/signals.c \
 
 OBJ = $(SRC:.c=.o)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 LIB = Libft/libft.a
 GNL = Libft/get_next_line/getnextline.a

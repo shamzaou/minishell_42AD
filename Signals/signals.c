@@ -6,7 +6,7 @@
 /*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 02:05:31 by shamzaou@st       #+#    #+#             */
-/*   Updated: 2024/01/08 03:07:07 by alabdull         ###   ########.fr       */
+/*   Updated: 2024/01/08 23:30:15 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	signal_handler(int signum)
 	if (signum == SIGINT)
 	{
 		ft_putstr_fd("\n", STDERR_FILENO);
-		rl_replace_line("", 0);
+		rl_insert_text("");
 		rl_on_new_line();
 		rl_redisplay();
 	}
