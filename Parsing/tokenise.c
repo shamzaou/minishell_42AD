@@ -32,7 +32,7 @@ static void	handle_operators(char **s, int *token)
 		(*s)++;
 		if (**s == '<')
 		{
-			*token = '%';
+			*token = '-';
 			(*s)++;
 		}
 	}

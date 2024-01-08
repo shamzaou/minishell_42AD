@@ -115,11 +115,11 @@ typedef struct s_params
 
 typedef struct s_pipe
 {
-	int		fd[2];
-	int		status;
-	int		pid1;
-	int		pid2;
-}			t_pipe;
+	int							fd[2];
+	int							status;
+	int							pid1;
+	int							pid2;
+}								t_pipe;
 
 /**
  * PARSING
@@ -162,14 +162,14 @@ char							*getvar_name(char *arg);
 void							get_quote(char *arg, int *i, t_char_queue *q);
 void							handle_dquotes_envar(int *values[2], char *arg,
 									t_char_queue *q, t_params *params);
-void	handle_dquotes_exitstatus(int *values[2],
-								t_char_queue *q);
+void							handle_dquotes_exitstatus(int *values[2],
+									t_char_queue *q);
 void							handle_dquotes(int *values[2], char *arg,
 									t_char_queue *q, t_params *params);
-void	handle_env_dollar(int *values[2],
-						t_char_queue *q,
-						char *arg,
-						t_params *params);
+void							handle_env_dollar(int *values[2],
+									t_char_queue *q,
+									char *arg,
+									t_params *params);
 void							handle_dollar(int *values[2], t_char_queue *q,
 									char *arg, t_params *params);
 
@@ -196,8 +196,10 @@ void							run_cmd(t_cmd *cmd, t_params *params,
 void							run_pipe(t_cmd *cmd, t_params *params,
 									int *exit_status);
 void							close_and_wait(t_pipe pipe);
-void							extra(t_pipe pipe, t_params *params, int *exit_status);
-void    						write_exit_status_to_file(t_params *params, int exit_status);
+void							extra(t_pipe pipe, t_params *params,
+									int *exit_status);
+void							write_exit_status_to_file(t_params *params,
+									int exit_status);
 void							set_signals(void);
 
 /* >>>> exec_redir.c <<<< */
@@ -209,19 +211,19 @@ char							*process_quoted_filename(char *file);
 /* >>>> exec_utils.c <<<< */
 
 void							remove_empty_args(t_execcmd *ecmd);
-void	handle_invalid_executable(t_execcmd *ecmd,
-								t_params *params,
-								struct stat path_stat);
-void	handle_executable_path(t_execcmd *ecmd,
-							t_params *params);
+void							handle_invalid_executable(t_execcmd *ecmd,
+									t_params *params,
+									struct stat path_stat);
+void							handle_executable_path(t_execcmd *ecmd,
+									t_params *params);
 char							*find_command_path(char *cmd, char *path_var);
 
 /* >>>> exec_builtin.c <<<< */
 
 int								is_builtin_command(t_execcmd *ecmd);
-void	execute_builtin_commands(t_execcmd *ecmd,
-								t_params *params,
-								int exit_status);
+void							execute_builtin_commands(t_execcmd *ecmd,
+									t_params *params,
+									int exit_status);
 
 /* >>>> operators.c <<<< */
 
@@ -235,9 +237,9 @@ t_cmd							*redircmd(t_cmd *subcmd, t_redirdata data,
 /* >>>> toolbox0.c <<<< */
 
 int								is_built_in_command(t_cmd *tree);
-void	execute_built_in_command(t_execcmd *ecmd,
-								t_env_var **env_var_list,
-								int *exit_status);
+void							execute_built_in_command(t_execcmd *ecmd,
+									t_env_var **env_var_list,
+									int *exit_status);
 void							save_child_pid(int pid, t_params *params);
 void							get_exit_status(t_cmd *tree, t_params *params,
 									int *exit_status, int status);
@@ -268,8 +270,8 @@ char							*queue_to_str(t_queue *q);
 void							free_queue(t_queue *q);
 void							init_queue_char(t_char_queue *q);
 void							add_char_to_queue(t_char_queue *q, char c);
-void	add_string_to_char_queue(t_char_queue *q,
-								char *str);
+void							add_string_to_char_queue(t_char_queue *q,
+									char *str);
 char							pop_char_from_queue(t_char_queue *q);
 char							*char_queue_to_str(t_char_queue *q);
 
@@ -283,33 +285,33 @@ void							echo(char **av);
 void							env(char **av, t_params *params);
 void							exit_command(char **av, t_params *params);
 void							export(char **args, t_env_var *env_var_list);
-void	export_command(char **args,
-					t_env_var **env_var_list,
-					int *exit_status);
+void							export_command(char **args,
+									t_env_var **env_var_list,
+									int *exit_status);
 void							pwd(int *exit_status);
-void	unset_env_var(char **args,
-					t_env_var **env_var_list,
-					int *exit_status);
+void							unset_env_var(char **args,
+									t_env_var **env_var_list,
+									int *exit_status);
 
 int								is_valid_variable_name(char *key);
-char	*extract_variable_name(char *arg,
-							char *equal_sign);
+char							*extract_variable_name(char *arg,
+									char *equal_sign);
 
 /**
  * ENVIRONMENT
 */
 
 t_env_var						*env_var_new(char *key, char *value);
-int	env_var_update_value(t_env_var *env_var_list,
-							t_env_var *new_nod);
-void	env_var_insert_sorted(t_env_var **env_var_list,
-							t_env_var *new_node);
-void	init_env_var_list(char **envp,
-						t_env_var **env_var_list);
+int								env_var_update_value(t_env_var *env_var_list,
+									t_env_var *new_nod);
+void							env_var_insert_sorted(t_env_var **env_var_list,
+									t_env_var *new_node);
+void							init_env_var_list(char **envp,
+									t_env_var **env_var_list);
 void							free_env_var_node(t_env_var *node);
 void							free_env_var_list(t_env_var *env_var_list);
-char	*getenv_value(char *key,
-					t_env_var *env_var_list);
+char							*getenv_value(char *key,
+									t_env_var *env_var_list);
 
 /**
  * SIGNALS

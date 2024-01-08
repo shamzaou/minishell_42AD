@@ -106,7 +106,7 @@ void	run_redir(t_cmd *cmd, t_params *params, int *exit_status)
 	rcmd = (t_redircmd *)cmd;
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
-	if (rcmd->r_type != '%')
+	if (rcmd->r_type != '-')
 	{
 		close(rcmd->fd);
 		if (open(rcmd->file, rcmd->mode, 0644) < 0)

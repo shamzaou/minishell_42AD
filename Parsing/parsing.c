@@ -69,9 +69,9 @@ t_cmd	*parse_redir(t_cmd *subcmd, char **ps, char *es)
 		else if (tok == '>')
 			cmd = redircmd(parse_redir(subcmd, ps, es),
 					redirdata(q, eq, O_WRONLY | O_CREAT | O_TRUNC, 1), '>');
-		else if (tok == '%')
+		else if (tok == '-')
 			cmd = redircmd(parse_redir(subcmd, ps, es),
-					redirdata(q, eq, O_RDONLY, 0), '%');
+					redirdata(q, eq, O_RDONLY, 0), '-');
 		else if (tok == '+')
 			cmd = redircmd(parse_redir(subcmd, ps, es),
 					redirdata(q, eq, O_WRONLY | O_CREAT | O_APPEND, 1), '+');

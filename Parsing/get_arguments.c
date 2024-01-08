@@ -87,7 +87,7 @@ void	handle_cmd_args(t_cmd *cmd, t_params *params, int *exit_status)
 	else if (cmd->type == REDIR)
 	{
 		rcmd = (t_redircmd *)cmd;
-		if (rcmd->r_type != '%' && contains_special_char(rcmd->file))
+		if (rcmd->r_type != '-' && contains_special_char(rcmd->file))
 			rcmd->file = get_args(rcmd->file, params, exit_status);
 		handle_cmd_args(rcmd->subcmd, params, exit_status);
 	}

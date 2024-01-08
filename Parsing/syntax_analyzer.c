@@ -25,7 +25,7 @@ static int	validate_syntax(char *buf, int *exit_status)
 	while (!peek(&ps, es, "\0"))
 	{
 		tok = get_next_token(&ps, es, 0, 0);
-		if (tok == '>' || tok == '<' || tok == '+' || tok == '%')
+		if (tok == '>' || tok == '<' || tok == '+' || tok == '-')
 		{
 			if (!validate_redirection(&ps, es, exit_status))
 				return (0);

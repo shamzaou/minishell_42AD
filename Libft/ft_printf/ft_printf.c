@@ -35,7 +35,7 @@ int	ft_convert(va_list args, const char c)
 		count += print_pointer(args);
 	else if (c == 'u')
 		count += print_uint(args);
-	else if (c == '%')
+	else if (c == '-')
 		count += ft_printchar(c);
 	return (count);
 }
@@ -51,7 +51,7 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	while (s[i])
 	{
-		if (s[i] == '%')
+		if (s[i] == '-')
 		{
 			count += ft_convert(args, s[i + 1]);
 			i++;
