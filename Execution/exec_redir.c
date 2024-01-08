@@ -10,7 +10,7 @@ static void	process_herdoc_input_dollar(char *line, int *i, t_params *params,
 	var_name = getvar_name(line + *i);
 	var_value = getenv_value(var_name, params->env_var_list);
 	if (var_value)
-		enqueue_str(q, var_value);
+		add_string_to_char_queue(q, var_value);
 	*i += ft_strlen(var_name);
 	ft_free(var_name);
 }
@@ -29,19 +29,19 @@ static char	*precess_herdoc_input(char *line, t_params *params,
 		if (line[i] == '$' && line[i + 1] == '?')
 		{
 			exit_status_str = ft_itoa(*exit_status);
-			enqueue_str(&q, exit_status_str);
+			add_string_to_char_queue(&q, exit_status_str);
 			free(exit_status_str);
 			i += 2;
 		}
 		else if (line[i] == '$' && (is_whitespace(line[i + 1])))
-			enqueue_char(&q, line[i++]);
+			add_char_to_queue(&q, line[i++]);
 		else if (line[i] == '$')
 			process_herdoc_input_dollar(line, &i, params, &q);
 		else
-			enqueue_char(&q, line[i++]);
+			add_char_to_queue(&q, line[i++]);
 	}
 	ft_free(line);
-	return (queue_char_to_str(&q));
+	return (char_queue_to_str(&q));
 }
 
 static char	*get_herdoc_input(char *delimiter, t_params *params,
@@ -69,7 +69,7 @@ static char	*get_herdoc_input(char *delimiter, t_params *params,
 			free(line);
 			break ;
 		}
-		enqueue(&q, precess_herdoc_input(line, params, exit_status));
+		add_to_queue(&q, precess_herdoc_input(line, params, exit_status));
 	}
 	return (queue_to_str(&q));
 }

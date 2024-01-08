@@ -36,7 +36,7 @@ static void	process_args(char *arg, t_queue_char *q, int *exit_status,
 			handle_dollar(values, q, arg, params);
 		}
 		else
-			enqueue_char(q, arg[i++]);
+			add_char_to_queue(q, arg[i++]);
 	}
 }
 
@@ -49,12 +49,12 @@ static char	*get_args(char *arg, t_params *params, int *exit_status)
 	if (ft_strcmp(arg, "~") == 0)
 	{
 		clean_arg = ft_strdup(getenv_value("HOME", params->env_var_list));
-		enqueue(&params->args_queue, clean_arg);
+		add_to_queue(&params->args_queue, clean_arg);
 		return (clean_arg);
 	}
 	process_args(arg, &q, exit_status, params);
-	clean_arg = queue_char_to_str(&q);
-	enqueue(&params->args_queue, clean_arg);
+	clean_arg = char_queue_to_str(&q);
+	add_to_queue(&params->args_queue, clean_arg);
 	return (clean_arg);
 }
 

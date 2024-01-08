@@ -6,12 +6,12 @@ void	init_queue_char(t_queue_char *q)
 	q->rear = NULL;
 }
 
-void	enqueue_char(t_queue_char *q, char c)
+void	add_char_to_queue(t_queue_char *q, char c)
 {
-	struct s_queue_node_char	*new_node;
+	struct s_char_queue_node	*new_node;
 
-	new_node = (struct s_queue_node_char *)malloc(sizeof(
-				struct s_queue_node_char));
+	new_node = (struct s_char_queue_node *)malloc(sizeof(
+				struct s_char_queue_node));
 	if (!new_node)
 		return ;
 	new_node->val = c;
@@ -28,10 +28,10 @@ void	enqueue_char(t_queue_char *q, char c)
 	}
 }
 
-char	dequeue_char(t_queue_char *q)
+char	pop_char_from_queue(t_queue_char *q)
 {
 	char						value;
-	struct s_queue_node_char	*tmp;
+	struct s_char_queue_node	*tmp;
 
 	tmp = q->front;
 	q->front = q->front->next;
@@ -40,21 +40,21 @@ char	dequeue_char(t_queue_char *q)
 	return (value);
 }
 
-void	enqueue_str(t_queue_char *q, char *str)
+void	add_string_to_char_queue(t_queue_char *q, char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		enqueue_char(q, str[i]);
+		add_char_to_queue(q, str[i]);
 		i++;
 	}
 }
 
-char	*queue_char_to_str(t_queue_char *q)
+char	*char_queue_to_str(t_queue_char *q)
 {
-	struct s_queue_node_char	*tmp;
+	struct s_char_queue_node	*tmp;
 	char						*str;
 	int							i;
 
@@ -70,7 +70,7 @@ char	*queue_char_to_str(t_queue_char *q)
 		return (NULL);
 	i = 0;
 	while (q->front)
-		str[i++] = dequeue_char(q);
+		str[i++] = pop_char_from_queue(q);
 	str[i] = '\0';
 	return (str);
 }

@@ -23,7 +23,7 @@ void	handle_env_dollar(int *values[2], t_queue_char *q, char *arg,
 	var_name = getvar_name(arg + *i);
 	var_value = getenv_value(var_name, params->env_var_list);
 	if (var_value)
-		enqueue_str(q, var_value);
+		add_string_to_char_queue(q, var_value);
 	(*i) += ft_strlen(var_name);
 	ft_free(var_name);
 }
@@ -40,13 +40,13 @@ void	handle_dollar(int *values[2], t_queue_char *q, char *arg,
 	(*i)++;
 	if (!arg[*i] || is_whitespace(arg[*i]))
 	{
-		enqueue_char(q, '$');
+		add_char_to_queue(q, '$');
 		return ;
 	}
 	else if (arg[*i] == '?')
 	{
 		exit_status_str = ft_itoa(*exit_status);
-		enqueue_str(q, exit_status_str);
+		add_string_to_char_queue(q, exit_status_str);
 		free(exit_status_str);
 		(*i)++;
 	}

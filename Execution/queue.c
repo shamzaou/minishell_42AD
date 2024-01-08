@@ -6,7 +6,7 @@ void	init_queue(t_queue *q)
 	q->rear = NULL;
 }
 
-void	enqueue(t_queue *q, void *val)
+void	add_to_queue(t_queue *q, void *val)
 {
 	t_queue_node	*new_node;
 
@@ -27,7 +27,7 @@ void	enqueue(t_queue *q, void *val)
 	}
 }
 
-void	*dequeue(t_queue *q)
+void	*pop_queue(t_queue *q)
 {
 	t_queue_node	*tmp;
 	void			*val;
@@ -58,7 +58,7 @@ char	*queue_to_str(t_queue *q)
 	str = (char *)ft_calloc(len + 1, sizeof(char));
 	while (q->front)
 	{
-		line = dequeue(q);
+		line = pop_queue(q);
 		ft_strlcat(str, line, len + 1);
 		free(line);
 	}

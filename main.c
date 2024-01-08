@@ -90,7 +90,7 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		setup_signals();
-		params.buf = readline("minishell$ ");
+		params.buf = readline(PROMPT);
 		if (!params.buf)
 		{
 			ft_putendl_fd("exit", STDOUT_FILENO);
