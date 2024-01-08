@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-static void	process_args(char *arg, t_queue_char *q, int *exit_status,
+static void	process_args(char *arg, t_char_queue *q, int *exit_status,
 		t_params *params)
 {
 	int	i;
@@ -42,7 +42,7 @@ static void	process_args(char *arg, t_queue_char *q, int *exit_status,
 
 static char	*get_args(char *arg, t_params *params, int *exit_status)
 {
-	t_queue_char	q;
+	t_char_queue	q;
 	char			*clean_arg;
 
 	init_queue_char(&q);

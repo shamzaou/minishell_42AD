@@ -83,11 +83,11 @@ typedef struct s_queue
 	t_queue_node		*rear;
 }						t_queue;
 
-typedef struct s_queue_char
+typedef struct s_char_queue
 {
 	struct s_char_queue_node	*front;
 	struct s_char_queue_node	*rear;
-}								t_queue_char;
+}								t_char_queue;
 
 struct							s_char_queue_node
 {
@@ -143,15 +143,15 @@ char	*getvar_name(char *arg);
 
 /* >>>> quotes.c && dollar.c <<<< */
 
-void	get_quote(char *arg, int *i, t_queue_char *q);
-void	handle_dquotes_envar(int *values[2], char *arg, t_queue_char *q,
+void	get_quote(char *arg, int *i, t_char_queue *q);
+void	handle_dquotes_envar(int *values[2], char *arg, t_char_queue *q,
 			t_params *params);
-void	handle_dquotes_exitstatus(int *values[2], t_queue_char *q);
-void	handle_dquotes(int *values[2], char *arg, t_queue_char *q,
+void	handle_dquotes_exitstatus(int *values[2], t_char_queue *q);
+void	handle_dquotes(int *values[2], char *arg, t_char_queue *q,
 			t_params *params);
-void	handle_env_dollar(int *values[2], t_queue_char *q, char *arg,
+void	handle_env_dollar(int *values[2], t_char_queue *q, char *arg,
 			t_params *params);
-void	handle_dollar(int *values[2], t_queue_char *q, char *arg,
+void	handle_dollar(int *values[2], t_char_queue *q, char *arg,
 			t_params *params);
 
 /* >>>> broomstick.c <<<< */
@@ -170,9 +170,12 @@ void	run_exec(t_cmd *cmd, t_params *params, int *exit_status);
 
 void	run_cmd(t_cmd *cmd, t_params *params, int *exit_status);
 
-/* >>>> exec_pipe.c <<<< */
+/* >>>> exec_pipe.c && exec_pipe_helpers.c <<<< */
 
 void	run_pipe(t_cmd *cmd, t_params *params, int *exit_status);
+void execute_left_subtree(t_cmd *cmd, int fd[2], t_params *params, int *exit_status);
+void execute_right_subtree(t_cmd *cmd, int fd[2], t_params *params, int *exit_status);
+void write_exit_status_to_file(t_params *params, int exit_status);
 
 /* >>>> exec_redir.c <<<< */
 
@@ -229,14 +232,11 @@ void add_to_queue(t_queue *q, void *val);
 void *pop_queue(t_queue *q);
 char *queue_to_str(t_queue *q);
 void free_queue(t_queue *q);
-
-
-/* HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH */
-void							init_queue_char(t_queue_char *q);
-void							add_char_to_queue(t_queue_char *q, char c);
-void							add_string_to_char_queue(t_queue_char *q, char *str);
-char							pop_char_from_queue(t_queue_char *q);
-char							*char_queue_to_str(t_queue_char *q);
+void							init_queue_char(t_char_queue *q);
+void							add_char_to_queue(t_char_queue *q, char c);
+void							add_string_to_char_queue(t_char_queue *q, char *str);
+char							pop_char_from_queue(t_char_queue *q);
+char							*char_queue_to_str(t_char_queue *q);
 
 /**
  * BUILTINS FOLDER

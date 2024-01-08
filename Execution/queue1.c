@@ -1,12 +1,12 @@
 #include "../minishell.h"
 
-void	init_queue_char(t_queue_char *q)
+void	init_queue_char(t_char_queue *q)
 {
 	q->front = NULL;
 	q->rear = NULL;
 }
 
-void	add_char_to_queue(t_queue_char *q, char c)
+void	add_char_to_queue(t_char_queue *q, char c)
 {
 	struct s_char_queue_node	*new_node;
 
@@ -28,7 +28,7 @@ void	add_char_to_queue(t_queue_char *q, char c)
 	}
 }
 
-char	pop_char_from_queue(t_queue_char *q)
+char	pop_char_from_queue(t_char_queue *q)
 {
 	char						value;
 	struct s_char_queue_node	*tmp;
@@ -40,7 +40,7 @@ char	pop_char_from_queue(t_queue_char *q)
 	return (value);
 }
 
-void	add_string_to_char_queue(t_queue_char *q, char *str)
+void	add_string_to_char_queue(t_char_queue *q, char *str)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ void	add_string_to_char_queue(t_queue_char *q, char *str)
 	}
 }
 
-char	*char_queue_to_str(t_queue_char *q)
+char	*char_queue_to_str(t_char_queue *q)
 {
 	struct s_char_queue_node	*tmp;
 	char						*str;

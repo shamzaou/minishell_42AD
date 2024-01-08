@@ -1,7 +1,7 @@
 #include "../minishell.h"
 
 static void	process_herdoc_input_dollar(char *line, int *i, t_params *params,
-	t_queue_char *q)
+	t_char_queue *q)
 {
 	char	*var_name;
 	char	*var_value;
@@ -19,7 +19,7 @@ static char	*precess_herdoc_input(char *line, t_params *params,
 	int *exit_status)
 {
 	int				i;
-	t_queue_char	q;
+	t_char_queue	q;
 	char			*exit_status_str;
 
 	i = 0;

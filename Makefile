@@ -32,6 +32,7 @@ SRC =	./main.c \
 		./Execution/Builtins/echo.c \
 		./Execution/operators.c \
 		./Execution/exec_pipe.c \
+		./Execution/exec_pipe_helpers.c \
 		./Execution/exec_utils.c \
 		./Execution/exec_builtin.c \
 		./Execution/toolbox1.c \

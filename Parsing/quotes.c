@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-void	get_quote(char *arg, int *i, t_queue_char *q)
+void	get_quote(char *arg, int *i, t_char_queue *q)
 {
 	(*i)++;
 	while (arg[*i] && arg[*i] != '\'')
@@ -23,7 +23,7 @@ void	get_quote(char *arg, int *i, t_queue_char *q)
 	(*i)++;
 }
 
-void	handle_dquotes_envar(int *values[2], char *arg, t_queue_char *q,
+void	handle_dquotes_envar(int *values[2], char *arg, t_char_queue *q,
 		t_params *params)
 {
 	char	*var_name;
@@ -40,7 +40,7 @@ void	handle_dquotes_envar(int *values[2], char *arg, t_queue_char *q,
 	ft_free(var_name);
 }
 
-void	handle_dquotes_exitstatus(int *values[2], t_queue_char *q)
+void	handle_dquotes_exitstatus(int *values[2], t_char_queue *q)
 {
 	char	*exit_status_str;
 	int		*i;
@@ -54,7 +54,7 @@ void	handle_dquotes_exitstatus(int *values[2], t_queue_char *q)
 	(*i) += 2;
 }
 
-void	handle_dquotes(int *values[2], char *arg, t_queue_char *q,
+void	handle_dquotes(int *values[2], char *arg, t_char_queue *q,
 		t_params *params)
 {
 	int	*i;

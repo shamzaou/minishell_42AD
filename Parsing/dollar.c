@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-void	handle_env_dollar(int *values[2], t_queue_char *q, char *arg,
+void	handle_env_dollar(int *values[2], t_char_queue *q, char *arg,
 		t_params *params)
 {
 	char	*var_name;
@@ -28,7 +28,7 @@ void	handle_env_dollar(int *values[2], t_queue_char *q, char *arg,
 	ft_free(var_name);
 }
 
-void	handle_dollar(int *values[2], t_queue_char *q, char *arg,
+void	handle_dollar(int *values[2], t_char_queue *q, char *arg,
 		t_params *params)
 {
 	char	*exit_status_str;
