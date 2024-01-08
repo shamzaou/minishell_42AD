@@ -4,11 +4,9 @@ CC = cc
 
 CFLAGS = -g3 -Wall -Werror -Wextra
 
-READLINE_PATH = $(shell brew --prefix readline)
-
-ifeq ($(shell uname -m), arm64)
-    LIB_FLAGS   =   -L./lib/libft -lft -L$(READLINE_PATH)/lib -lreadline
-    INCLUDES    =   -I./include -I./lib/libft -I$(READLINE_PATH)/include
+ifeq ($(shell uname -m), i386)
+    LIB_FLAGS   =   -L./lib/libft -lft -L/lib -lreadline
+    INCLUDES    =   -I./include -I./lib/libft -I/include
 else
     LIB_FLAGS   =   -L./lib/libft -lft -lreadline
     INCLUDES    =   -I./include -I./lib/libft
