@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 02:19:04 by shamzaou@student  #+#    #+#             */
+/*   Updated: 2024/01/09 02:20:05 by shamzaou@student ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	check_overflow(long long num, int sign, int digit)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 02:49:25 by alabdull          #+#    #+#             */
-/*   Updated: 2024/01/08 02:56:34 by alabdull         ###   ########.fr       */
+/*   Updated: 2024/01/09 02:20:20 by shamzaou@student ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
