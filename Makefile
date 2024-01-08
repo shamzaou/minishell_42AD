@@ -1,5 +1,9 @@
 NAME = minishell
 
+CC = cc
+
+CFLAGS = -g3 -Wall -Werror -Wextra
+
 ifeq ($(shell uname -p), i386)
     LIB_FLAGS   =   -L./lib/libft -lft -L/usr/local/Cellar/readline/8.1/lib -lreadline
     INCLUDES    =   -I./include -I./lib/libft -I/usr/local/Cellar/readline/8.1/include
@@ -8,15 +12,15 @@ else
     INCLUDES    =   -I./include -I./lib/libft
 endif
 
-SRC =	./Parsing/syntax_analyzer.c \
+SRC =	./main.c \
 		./Env/env.c \
 		./Env/env_utils.c \
-		./main.c \
 		./Execution/exec_redir.c \
 		./Execution/exec.c \
 		./Execution/toolbox0.c \
 		./Execution/exec_cmd.c \
 		./Execution/queue.c \
+		./Execution/queue1.c \
 		./Execution/ft_free.c \
 		./Execution/Builtins/exit.c \
 		./Execution/Builtins/unset.c \
@@ -42,11 +46,9 @@ SRC =	./Parsing/syntax_analyzer.c \
 		./Parsing/syntax_analyzer_helpers.c \
 		./Parsing/dollar.c \
 		./Parsing/quotes.c \
+		./Signals/signals.c \
 
 OBJ = $(SRC:.c=.o)
-
-CC = cc
-CFLAGS = -g3 -Wall -Werror -Wextra
 
 LIB = Libft/libft.a
 GNL = Libft/get_next_line/getnextline.a

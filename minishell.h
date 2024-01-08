@@ -89,6 +89,19 @@ typedef struct s_queue_char
 	struct s_queue_node_char	*rear;
 }								t_queue_char;
 
+struct							s_queue_node_char
+{
+	char						val;
+	struct s_queue_node_char	*next;
+};
+
+
+typedef struct so_list
+{
+	void						*content;
+	struct s_list				*next;
+}								to_list;
+
 typedef struct s_params
 {
 	char		*buf;
@@ -216,6 +229,14 @@ void enqueue(t_queue *q, void *val);
 void *dequeue(t_queue *q);
 char *queue_to_str(t_queue *q);
 void free_queue(t_queue *q);
+
+
+/* HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH */
+void							init_queue_char(t_queue_char *q);
+void							enqueue_char(t_queue_char *q, char c);
+void							enqueue_str(t_queue_char *q, char *str);
+char							dequeue_char(t_queue_char *q);
+char							*queue_char_to_str(t_queue_char *q);
 
 /**
  * BUILTINS FOLDER

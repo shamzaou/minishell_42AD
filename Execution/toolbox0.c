@@ -1,3 +1,5 @@
+#include "../minishell.h"
+
 int	is_built_in_command(t_cmd *tree)
 {
 	t_execcmd	*ecmd;
