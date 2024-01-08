@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analyzer_helpers.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou@student.42abudhabi.ae <shamzaou>  +#+  +:+       +#+        */
+/*   By: alabdull <alabdull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 02:05:01 by shamzaou@st       #+#    #+#             */
-/*   Updated: 2024/01/09 02:22:22 by shamzaou@student ###   ########.fr       */
+/*   Updated: 2024/01/09 03:31:01 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	validate_redirection(char **ps, char *es, int *exit_status)
 	tok = get_next_token(ps, es, &q, &eq);
 	if (tok == '\0')
 	{
-		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n",
+		ft_putstr_fd("minishell: syntax error near unexpected \
+	token `newline'\n",
 			STDERR_FILENO);
 		*exit_status = 100;
 		return (0);

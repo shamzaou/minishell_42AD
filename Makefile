@@ -2,7 +2,7 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -g3 -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 ifeq ($(shell uname -m), i386)
     LIB_FLAGS   =   -L./lib/libft -lft -L/lib -lreadline
