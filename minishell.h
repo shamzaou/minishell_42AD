@@ -6,7 +6,7 @@
 /*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 02:29:00 by alabdull          #+#    #+#             */
-/*   Updated: 2024/01/09 02:46:56 by alabdull         ###   ########.fr       */
+/*   Updated: 2024/01/09 03:11:39 by alabdull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ typedef struct s_pipe
 	int		status;
 	int		pid1;
 	int		pid2;
-	int		*is_herdoc;
 }			t_pipe;
 
 /**
@@ -196,12 +195,10 @@ void							run_cmd(t_cmd *cmd, t_params *params,
 
 void							run_pipe(t_cmd *cmd, t_params *params,
 									int *exit_status);
-void							execute_left_subtree(t_cmd *cmd, int fd[2],
-									t_params *params, int *exit_status);
-void							execute_right_subtree(t_cmd *cmd, int fd[2],
-									t_params *params, int *exit_status);
-void	write_exit_status_to_file(t_params *params,
-								int exit_status);
+void							close_and_wait(t_pipe pipe);
+void							extra(t_pipe pipe, t_params *params, int *exit_status);
+void    						write_exit_status_to_file(t_params *params, int exit_status);
+void							set_signals(void);
 
 /* >>>> exec_redir.c <<<< */
 
