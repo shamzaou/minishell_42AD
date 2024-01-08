@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_pipe_helpers.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 02:28:38 by alabdull          #+#    #+#             */
+/*   Updated: 2024/01/09 02:32:24 by alabdull         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	execute_left_subtree(t_cmd *cmd, int fd[2], t_params *params,
@@ -31,4 +43,3 @@ void	write_exit_status_to_file(t_params *params, int exit_status)
 		free_panic_exit(params, "write", 1);
 	close(fd);
 }
-
