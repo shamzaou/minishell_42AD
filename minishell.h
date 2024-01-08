@@ -108,6 +108,8 @@ int		validate_command(char *buf, int *exit_status);
 int		check_invalid_pipe_syntax(char **ps, char *es, int *exit_status);
 int		validate_redirection(char **ps, char *es, int *exit_status);
 int		validate_pipe(char **ps, char *es, int *exit_status);
+int		peek(char **ps, char *es, char *tokens);
+int		get_next_token(char **ps, char *es, char **q, char **eq);
 
 /* >>>> parsing.c && parse_exec.c && tokenise.c <<<< */
 
