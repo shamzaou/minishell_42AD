@@ -14,16 +14,14 @@
 
 void	free_tree(t_cmd *cmd)
 {
+	t_execcmd	*ecmd;
 	t_pipecmd	*pcmd;
 	t_redircmd	*rcmd;
-	t_execcmd	*ecmd;
 
-	if (cmd && cmd->type == PIPE)
+	if (cmd && cmd->type == EXEC)
 	{
-		pcmd = (t_pipecmd *)cmd;
-		free_tree(pcmd->left);
-		free_tree(pcmd->right);
-		ft_free(pcmd);
+		ecmd = (t_execcmd *)cmd;
+		ft_free(ecmd);
 	}
 	else if (cmd && cmd->type == REDIR)
 	{
@@ -31,9 +29,11 @@ void	free_tree(t_cmd *cmd)
 		free_tree(rcmd->subcmd);
 		ft_free(rcmd);
 	}
-	else if (cmd && cmd->type == EXEC)
+	else if (cmd && cmd->type == PIPE)
 	{
-		ecmd = (t_execcmd *)cmd;
-		ft_free(ecmd);
+		pcmd = (t_pipecmd *)cmd;
+		free_tree(pcmd->left);
+		free_tree(pcmd->right);
+		ft_free(pcmd);
 	}
 }

@@ -26,10 +26,10 @@ static void	execute_command(t_params *params, int *exit_status)
 	waitpid(-1, &status, 0);
 	get_exit_status(params->tree, params, exit_status, status);
 	ecmd = (t_execcmd *)params->tree;
-	if (ecmd->type == EXEC && ft_strcmp(ecmd->argv[0], "exit") == 0)
+	if (ecmd->type == EXEC && ft_strcmp(ecmd->av[0], "exit") == 0)
 	{
-		if (!ecmd->argv[1] || (ecmd->argv[1]
-				&& (!is_numeric(ecmd->argv[1]) || !ecmd->argv[2])))
+		if (!ecmd->av[1] || (ecmd->av[1]
+				&& (!is_numeric(ecmd->av[1]) || !ecmd->av[2])))
 		{
 			unlink("/tmp/exit_status.tmp");
 			unlink("/tmp/child_pid.tmp");
@@ -66,7 +66,7 @@ static void	execute_shell_command(t_params *params, int *exit_status)
 		ft_free(params->buf);
 		return ;
 	}
-	process_args(params->tree, params, exit_status);
+	handle_cmd_args(params->tree, params, exit_status);
 	if (is_built_in_command(params->tree))
 	{
 		execute_built_in_command((t_execcmd *)params->tree,
@@ -79,13 +79,13 @@ static void	execute_shell_command(t_params *params, int *exit_status)
 		execute_command(params, exit_status);
 }
 
-int	main(int argc, char **argv, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_params	params;
 	int			exit_status;
 
-	(void)argc;
-	(void)argv;
+	(void)ac;
+	(void)av;
 	initialize_shell_environment(&params, &exit_status, envp);
 	while (1)
 	{

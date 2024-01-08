@@ -14,9 +14,9 @@
 
 t_cmd	*parse_cmd(char *buf, int *exit_status)
 {
+	t_cmd	*cmd;
 	char	*ps;
 	char	*es;
-	t_cmd	*cmd;
 	int		error;
 
 	ps = buf;
@@ -30,7 +30,7 @@ t_cmd	*parse_cmd(char *buf, int *exit_status)
 			ft_putstr_fd("minishell: too many arguments\n", STDERR_FILENO);
 		else
 			ft_putstr_fd("minishell: syntax error\n", STDERR_FILENO);
-		*exit_status = 258;
+		*exit_status = 100;
 		free_tree(cmd);
 		return (NULL);
 	}
@@ -69,12 +69,12 @@ t_cmd	*parse_redir(t_cmd *subcmd, char **ps, char *es)
 		else if (tok == '>')
 			cmd = redircmd(parse_redir(subcmd, ps, es),
 					redirdata(q, eq, O_WRONLY | O_CREAT | O_TRUNC, 1), '>');
-		else if (tok == '+')
-			cmd = redircmd(parse_redir(subcmd, ps, es),
-					redirdata(q, eq, O_WRONLY | O_CREAT | O_APPEND, 1), '+');
 		else if (tok == '%')
 			cmd = redircmd(parse_redir(subcmd, ps, es),
 					redirdata(q, eq, O_RDONLY, 0), '%');
+		else if (tok == '+')
+			cmd = redircmd(parse_redir(subcmd, ps, es),
+					redirdata(q, eq, O_WRONLY | O_CREAT | O_APPEND, 1), '+');
 	}
 	return (cmd);
 }

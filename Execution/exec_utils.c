@@ -4,15 +4,15 @@ void	remove_empty_args(t_execcmd *ecmd)
 {
 	int	i;
 
-	while (ecmd->argv[0] && ecmd->argv[0][0] == '\0')
+	while (ecmd->av[0] && ecmd->av[0][0] == '\0')
 	{
 		i = 0;
-		while (ecmd->argv[i] && ecmd->argv[i + 1])
+		while (ecmd->av[i] && ecmd->av[i + 1])
 		{
-			ecmd->argv[i] = ecmd->argv[i + 1];
+			ecmd->av[i] = ecmd->av[i + 1];
 			i++;
 		}
-		ecmd->argv[i] = NULL;
+		ecmd->av[i] = NULL;
 	}
 }
 
@@ -21,13 +21,13 @@ void	handle_invalid_executable(t_execcmd *ecmd, t_params *params,
 {
 	if (S_ISDIR(path_stat.st_mode))
 	{
-		ft_putstr_fd1("minishell: ", ecmd->argv[0], ": is a directory\n",
+		ft_putstr_fd1("minishell: ", ecmd->av[0], ": is a directory\n",
 			STDERR_FILENO);
 		free_exit(params, 126);
 	}
-	else if (access(ecmd->argv[0], X_OK) != 0)
+	else if (access(ecmd->av[0], X_OK) != 0)
 	{
-		ft_putstr_fd1("minishell: ", ecmd->argv[0], ": Permission denied\n",
+		ft_putstr_fd1("minishell: ", ecmd->av[0], ": Permission denied\n",
 			STDERR_FILENO);
 		free_exit(params, 126);
 	}
@@ -37,15 +37,15 @@ void	handle_executable_path(t_execcmd *ecmd, t_params *params)
 {
 	struct stat	path_stat;
 
-	if (ecmd->argv[0] == NULL)
+	if (ecmd->av[0] == NULL)
 		free_exit(params, 0);
-	else if (ft_strchr("./", ecmd->argv[0][0]))
+	else if (ft_strchr("./", ecmd->av[0][0]))
 	{
-		if (stat(ecmd->argv[0], &path_stat) == 0)
+		if (stat(ecmd->av[0], &path_stat) == 0)
 			handle_invalid_executable(ecmd, params, path_stat);
 		else
 		{
-			ft_putstr_fd1("minishell: ", ecmd->argv[0],
+			ft_putstr_fd1("minishell: ", ecmd->av[0],
 				": No such file or directory\n", STDERR_FILENO);
 			free_exit(params, 127);
 		}

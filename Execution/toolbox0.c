@@ -7,11 +7,11 @@ int	is_built_in_command(t_cmd *tree)
 	if (tree && tree->type == EXEC)
 	{
 		ecmd = (t_execcmd *)tree;
-		if (ft_strcmp(ecmd->argv[0], "export") == 0)
+		if (ft_strcmp(ecmd->av[0], "export") == 0)
 			return (1);
-		else if (ft_strcmp(ecmd->argv[0], "unset") == 0)
+		else if (ft_strcmp(ecmd->av[0], "unset") == 0)
 			return (1);
-		else if (ft_strcmp(ecmd->argv[0], "cd") == 0)
+		else if (ft_strcmp(ecmd->av[0], "cd") == 0)
 			return (1);
 	}
 	return (0);
@@ -20,12 +20,12 @@ int	is_built_in_command(t_cmd *tree)
 void	execute_built_in_command(t_execcmd *ecmd, t_env_var **env_var_list,
 		int *exit_status)
 {
-	if (ft_strcmp(ecmd->argv[0], "export") == 0)
-		export_command(ecmd->argv, env_var_list, exit_status);
-	else if (ft_strcmp(ecmd->argv[0], "unset") == 0)
-		unset_env_var(ecmd->argv, env_var_list, exit_status);
-	else if (ft_strcmp(ecmd->argv[0], "cd") == 0)
-		cd(ecmd->argv, exit_status, *env_var_list);
+	if (ft_strcmp(ecmd->av[0], "export") == 0)
+		export_command(ecmd->av, env_var_list, exit_status);
+	else if (ft_strcmp(ecmd->av[0], "unset") == 0)
+		unset_env_var(ecmd->av, env_var_list, exit_status);
+	else if (ft_strcmp(ecmd->av[0], "cd") == 0)
+		cd(ecmd->av, exit_status, *env_var_list);
 }
 
 void	save_child_pid(int pid, t_params *params)

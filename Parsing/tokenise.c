@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-static void	process_special_tokens(char **s, int *token)
+static void	handle_operators(char **s, int *token)
 {
 	if (*token == '\0')
 		*token = '\0';
@@ -72,7 +72,7 @@ int	get_next_token(char **ps, char *es, char **q, char **eq)
 	if (q)
 		*q = s;
 	token = *s;
-	process_special_tokens(&s, &token);
+	handle_operators(&s, &token);
 	if (token == 'a')
 		skip_non_special_tokens(&s, es);
 	if (eq)

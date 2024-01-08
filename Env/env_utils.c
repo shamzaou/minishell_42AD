@@ -23,8 +23,8 @@ void	free_env_var_node(t_env_var *node)
 
 void	free_env_var_list(t_env_var *env_var_list)
 {
-	t_env_var	*tmp;
 	t_env_var	*current;
+	t_env_var	*tmp;
 
 	current = env_var_list;
 	while (current)

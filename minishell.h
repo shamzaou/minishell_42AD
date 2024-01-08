@@ -41,7 +41,7 @@ typedef struct s_pipecmd
 typedef struct s_execcmd
 {
 	int		type;
-	char	*argv[MAXARGS];
+	char	*av[MAXARGS];
 	char	*eargv[MAXARGS];
 }			t_execcmd;
 
@@ -137,21 +137,21 @@ t_cmd	*null_terminate_command(t_cmd *cmd);
 
 /* >>>> get_arguments.c && get_arguments_helpers.c <<<< */
 
-void	process_args(t_cmd *cmd, t_params *params, int *exit_status);
+void	handle_cmd_args(t_cmd *cmd, t_params *params, int *exit_status);
 int		contains_special_char(char *arg);
 char	*getvar_name(char *arg);
 
 /* >>>> quotes.c && dollar.c <<<< */
 
-void	process_single_quote(char *arg, int *i, t_queue_char *q);
-void	process_double_quote_2(int *values[2], char *arg, t_queue_char *q,
+void	get_quote(char *arg, int *i, t_queue_char *q);
+void	handle_dquotes_envar(int *values[2], char *arg, t_queue_char *q,
 			t_params *params);
-void	process_double_quote_3(int *values[2], t_queue_char *q);
-void	process_double_quote(int *values[2], char *arg, t_queue_char *q,
+void	handle_dquotes_exitstatus(int *values[2], t_queue_char *q);
+void	handle_dquotes(int *values[2], char *arg, t_queue_char *q,
 			t_params *params);
-void	process_dollar_sign_2(int *values[2], t_queue_char *q, char *arg,
+void	handle_env_dollar(int *values[2], t_queue_char *q, char *arg,
 			t_params *params);
-void	process_dollar_sign(int *values[2], t_queue_char *q, char *arg,
+void	handle_dollar(int *values[2], t_queue_char *q, char *arg,
 			t_params *params);
 
 /* >>>> broomstick.c <<<< */
@@ -242,10 +242,10 @@ char							*queue_char_to_str(t_queue_char *q);
  * BUILTINS FOLDER
 */
 
-void	cd(char **argv, int *exit_status, t_env_var *env_var_list);
-void	echo(char **argv);
-void	env(char **argv, t_params *params);
-void	exit_command(char **argv, t_params *params);
+void	cd(char **av, int *exit_status, t_env_var *env_var_list);
+void	echo(char **av);
+void	env(char **av, t_params *params);
+void	exit_command(char **av, t_params *params);
 void	export(char **args, t_env_var *env_var_list);
 void	export_command(char **args,
 	t_env_var **env_var_list, int *exit_status);

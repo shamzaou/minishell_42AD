@@ -14,8 +14,8 @@
 
 int	contains_special_char(char *arg)
 {
-	if (ft_strchr(arg, '\'') || ft_strchr(arg, '\"') || ft_strchr(arg, '$')
-		|| ft_strchr(arg, '~'))
+	if (ft_strchr(arg, '\'') || ft_strchr(arg, '\"') || ft_strchr(arg, '~')
+		|| ft_strchr(arg, '$'))
 		return (1);
 	return (0);
 }

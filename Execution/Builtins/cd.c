@@ -63,12 +63,12 @@ static void	cd_oldpwd_check(t_env_var *env_var_list, int *exit_status)
 	}
 }
 
-static void	cd_path_check(char **argv, int *exit_status,
+static void	cd_path_check(char **av, int *exit_status,
 	t_env_var *env_var_list)
 {
 	char	*path;
 
-	path = ft_strjoin(getenv_value("HOME", env_var_list), argv[1] + 1);
+	path = ft_strjoin(getenv_value("HOME", env_var_list), av[1] + 1);
 	if (chdir(path) != 0)
 	{
 		ft_putstr_fd1("minishell: cd: ", path,
@@ -80,21 +80,21 @@ static void	cd_path_check(char **argv, int *exit_status,
 	free(path);
 }
 
-void	cd(char **argv, int *exit_status, t_env_var *env_var_list)
+void	cd(char **av, int *exit_status, t_env_var *env_var_list)
 {
-	if (argv[1] == NULL)
+	if (av[1] == NULL)
 	{
 		change_to_home_directory(exit_status, env_var_list);
 		update_pwd(env_var_list);
 		return ;
 	}
-	if (ft_strcmp(argv[1], "-") == 0)
+	if (ft_strcmp(av[1], "-") == 0)
 		cd_oldpwd_check(env_var_list, exit_status);
-	else if (argv[1][0] == '~')
-		cd_path_check(argv, exit_status, env_var_list);
-	else if (chdir(argv[1]) != 0)
+	else if (av[1][0] == '~')
+		cd_path_check(av, exit_status, env_var_list);
+	else if (chdir(av[1]) != 0)
 	{
-		ft_putstr_fd1("minishell: cd: ", argv[1],
+		ft_putstr_fd1("minishell: cd: ", av[1],
 			": No such file or directory\n", 2);
 		*exit_status = 1;
 	}

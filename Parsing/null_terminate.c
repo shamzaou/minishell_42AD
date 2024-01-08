@@ -17,8 +17,8 @@ static void	null_terminate_pipe(t_cmd *cmd)
 	t_pipecmd	*pcmd;
 
 	pcmd = (t_pipecmd *)cmd;
-	null_terminate_command(pcmd->left);
 	null_terminate_command(pcmd->right);
+	null_terminate_command(pcmd->left);
 }
 
 static void	null_terminate_redir(t_cmd *cmd)
@@ -37,7 +37,7 @@ static t_cmd	*null_terminate_exec(t_cmd *cmd)
 
 	i = 0;
 	ecmd = (t_execcmd *)cmd;
-	while (ecmd->argv[i])
+	while (ecmd->av[i])
 	{
 		*ecmd->eargv[i] = '\0';
 		i++;

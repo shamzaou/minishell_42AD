@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-static int	parse_exec_arg(t_execcmd **ecmd, char **ps, char *es, int *argc)
+static int	parse_exec_args(t_execcmd **ecmd, char **ps, char *es, int *ac)
 {
 	int		tok;
 	char	*q;
@@ -21,9 +21,9 @@ static int	parse_exec_arg(t_execcmd **ecmd, char **ps, char *es, int *argc)
 	tok = get_next_token(ps, es, &q, &eq);
 	if (tok == '\0')
 		return (0);
-	(*ecmd)->argv[*argc] = q;
-	(*ecmd)->eargv[*argc] = eq;
-	(*argc)++;
+	(*ecmd)->av[*ac] = q;
+	(*ecmd)->eargv[*ac] = eq;
+	(*ac)++;
 	return (1);
 }
 
@@ -44,19 +44,19 @@ static void	parse_next_redir(t_cmd **cmd, t_execcmd **ecmd, char **ps, char *es)
 
 t_cmd	*parse_exec(char **ps, char *es, int *error)
 {
-	t_execcmd	*ecmd;
 	t_cmd		*cmd;
-	int			argc;
+	t_execcmd	*ecmd;
+	int			ac;
 
-	argc = 0;
+	ac = 0;
 	cmd = execcmd();
 	ecmd = (t_execcmd *)cmd;
 	cmd = parse_redir(cmd, ps, es);
 	while (!peek(ps, es, "|"))
 	{
-		if (!parse_exec_arg(&ecmd, ps, es, &argc))
+		if (!parse_exec_args(&ecmd, ps, es, &ac))
 			break ;
-		if (argc >= MAXARGS)
+		if (ac >= MAXARGS)
 		{
 			*error = 1;
 			free_tree(cmd);
@@ -64,7 +64,7 @@ t_cmd	*parse_exec(char **ps, char *es, int *error)
 		}
 		parse_next_redir(&cmd, &ecmd, ps, es);
 	}
-	ecmd->argv[argc] = NULL;
-	ecmd->eargv[argc] = NULL;
+	ecmd->av[ac] = NULL;
+	ecmd->eargv[ac] = NULL;
 	return (cmd);
 }

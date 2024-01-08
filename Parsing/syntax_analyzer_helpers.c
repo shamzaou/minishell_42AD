@@ -17,7 +17,7 @@ int	check_invalid_pipe_syntax(char **ps, char *es, int *exit_status)
 	if (peek(ps, es, "|"))
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", STDERR_FILENO);
-		*exit_status = 258;
+		*exit_status = 100;
 		return (1);
 	}
 	return (0);
@@ -33,14 +33,14 @@ int	validate_redirection(char **ps, char *es, int *exit_status)
 	if (tok == '\0')
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `newline'\n", STDERR_FILENO);
-		*exit_status = 258;
+		*exit_status = 100;
 		return (0);
 	}
 	else if (tok != 'a')
 	{
 		*eq = '\0';
 		ft_putstr_fd1("minishell: syntax error near unexpected token `", q ,"'\n", STDERR_FILENO);
-		*exit_status = 258;
+		*exit_status = 100;
 		return (0);
 	}
 	return (1);
@@ -54,7 +54,7 @@ int	validate_pipe(char **ps, char *es, int *exit_status)
 	if (tok == '|' || tok == '\0')
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", STDERR_FILENO);
-		*exit_status = 258;
+		*exit_status = 100;
 		return (0);
 	}
 	return (1);

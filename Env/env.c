@@ -19,8 +19,8 @@ t_env_var	*env_var_new(char *key, char *value)
 	env_var_node = (t_env_var *)malloc(sizeof(t_env_var));
 	if (!env_var_node)
 		return (NULL);
-	env_var_node->key = key;
 	env_var_node->value = value;
+	env_var_node->key = key;
 	env_var_node->next = NULL;
 	return (env_var_node);
 }

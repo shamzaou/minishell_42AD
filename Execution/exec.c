@@ -11,18 +11,18 @@ static void	execute_external_command(t_cmd *cmd, t_params *params)
 	path_var = getenv_value("PATH", params->env_var_list);
 	if (path_var == NULL)
 	{
-		ft_putstr_fd1("minishell: ", ecmd->argv[0],
+		ft_putstr_fd1("minishell: ", ecmd->av[0],
 			": No such file or directory\n", STDERR_FILENO);
 		free_exit(params, 127);
 	}
-	binary_path = find_command_path(ecmd->argv[0], path_var);
+	binary_path = find_command_path(ecmd->av[0], path_var);
 	if (binary_path == NULL)
 	{
-		ft_putstr_fd1("minishell: ", ecmd->argv[0],
+		ft_putstr_fd1("minishell: ", ecmd->av[0],
 			": command not found\n", STDERR_FILENO);
 		free_exit(params, 127);
 	}
-	execve(binary_path, ecmd->argv, params->envp);
+	execve(binary_path, ecmd->av, params->envp);
 	ft_free(binary_path);
 	free_exit(params, 126);
 }
@@ -41,10 +41,10 @@ void	run_exec(t_cmd *cmd, t_params *params, int *exit_status)
 	}
 	else
 	{
-		if (access(ecmd->argv[0], X_OK) == 0)
+		if (access(ecmd->av[0], X_OK) == 0)
 		{
-			execve(ecmd->argv[0], ecmd->argv, params->envp);
-			ft_putstr_fd1("minishell: ", ecmd->argv[0],
+			execve(ecmd->av[0], ecmd->av, params->envp);
+			ft_putstr_fd1("minishell: ", ecmd->av[0],
 				": command not found\n", STDERR_FILENO);
 			free_exit(params, 127);
 		}

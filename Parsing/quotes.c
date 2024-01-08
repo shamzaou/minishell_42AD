@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-void	process_single_quote(char *arg, int *i, t_queue_char *q)
+void	get_quote(char *arg, int *i, t_queue_char *q)
 {
 	(*i)++;
 	while (arg[*i] && arg[*i] != '\'')
@@ -23,7 +23,7 @@ void	process_single_quote(char *arg, int *i, t_queue_char *q)
 	(*i)++;
 }
 
-void	process_double_quote_2(int *values[2], char *arg, t_queue_char *q,
+void	handle_dquotes_envar(int *values[2], char *arg, t_queue_char *q,
 		t_params *params)
 {
 	char	*var_name;
@@ -40,7 +40,7 @@ void	process_double_quote_2(int *values[2], char *arg, t_queue_char *q,
 	ft_free(var_name);
 }
 
-void	process_double_quote_3(int *values[2], t_queue_char *q)
+void	handle_dquotes_exitstatus(int *values[2], t_queue_char *q)
 {
 	char	*exit_status_str;
 	int		*i;
@@ -54,7 +54,7 @@ void	process_double_quote_3(int *values[2], t_queue_char *q)
 	(*i) += 2;
 }
 
-void	process_double_quote(int *values[2], char *arg, t_queue_char *q,
+void	handle_dquotes(int *values[2], char *arg, t_queue_char *q,
 		t_params *params)
 {
 	int	*i;
@@ -70,9 +70,9 @@ void	process_double_quote(int *values[2], char *arg, t_queue_char *q,
 			(*i)++;
 		}
 		else if (arg[*i] == '$' && arg[*i + 1] == '?')
-			process_double_quote_3(values, q);
+			handle_dquotes_exitstatus(values, q);
 		else if (arg[*i] == '$')
-			process_double_quote_2(values, arg, q, params);
+			handle_dquotes_envar(values, arg, q, params);
 		else
 			enqueue_char(q, arg[(*i)++]);
 	}

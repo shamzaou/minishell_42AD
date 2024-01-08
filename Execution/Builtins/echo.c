@@ -15,22 +15,22 @@ static int	is_newline_flag(char *str)
 	return (0);
 }
 
-void	echo(char **argv)
+void	echo(char **av)
 {
 	int		i;
 	int		new_line;
 
 	i = 1;
 	new_line = 1;
-	while (argv[i] && is_newline_flag(argv[i]))
+	while (av[i] && is_newline_flag(av[i]))
 	{
 		new_line = 0;
 		i++;
 	}
-	while (argv[i])
+	while (av[i])
 	{
-		printf("%s", argv[i]);
-		if (argv[i++ + 1])
+		printf("%s", av[i]);
+		if (av[i++ + 1])
 			printf(" ");
 	}
 	if (new_line)

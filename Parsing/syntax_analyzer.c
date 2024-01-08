@@ -59,7 +59,7 @@ static int	contains_unbalanced_quotes(char *buf, int *exit_status)
 			{
 				ft_putstr_fd2("minishell: unexpected EOF while looking \
 for matching `", tok, "'\n", STDERR_FILENO);
-				*exit_status = 258;
+				*exit_status = 100;
 				return (1);
 			}
 			i++;
