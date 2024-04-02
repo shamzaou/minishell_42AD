@@ -19,10 +19,15 @@ Minishell is a simple Unix shell implementation written in C. It provides a comm
 
 The Minishell project typically consists of the following components:
 
-- **`src/`**: Contains the source code files for the Minishell implementation.
-- **`include/`**: Header files containing function prototypes and constant definitions.
-- **`tests/`**: Directory for test cases and test scripts to ensure proper functionality.
-- **`Makefile`**: Makefile for building the project and running tests.
+.
+├── Env : Environment-related files.
+├── Libft : Library containing utility functions (if used).
+├── Parsing : Files related to command-line parsing.
+├── Signals : Signal handling related files.
+├── Makefile : Makefile for building the project.
+├── main.c  Main source file containing the entry point of the program.
+├── README.md : Project documentation.
+└── minishell.h : Header file containing function prototypes and constant definitions.
 
 ## Installation
 
